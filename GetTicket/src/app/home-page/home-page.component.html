@@ -1,0 +1,50 @@
+  <div class="d-flex align-items-center justify-content-center full-screen">
+    <div style="height: 400px; width: 600px;">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>選擇資料來源</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>可重新補單的資料僅限於7天內</p>
+          <p>選定來源後可以不斷在檢索區重複搜索</p>
+          <select [(ngModel)]="selectedOption" [disabled]="confirmBTN_disable">
+            <option *ngFor="let item of fileNames;let i = index" [ngValue]="i">
+              {{ item }}
+            </option>
+          </select>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button mat-raised-button [disabled]="confirmBTN_disable" (click)="confirmBTN()">確認</button>
+            <button mat-raised-button [disabled]="cancelBTN_disable" (click)="confirmBTN()">重選</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+      <br>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>檢索區</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>輸入電號</p>
+          <input type="text" [(ngModel)]="elecNumTEXT" pattern="[0-9]{11}">
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button [disabled]="searchBTN_disable" (click)="searchBTN()">搜尋</button>
+        </mat-card-actions>
+      </mat-card>
+      <br>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>搜尋結果</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>電號狀態:{{returnName}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button [disabled]="getdataBTN_disable" (click)="getDataBTN()">取得此資料</button>
+          <button mat-raised-button (click)="apiBTN()">測試API功能</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
